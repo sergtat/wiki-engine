@@ -1,0 +1,11 @@
+doctype html
+html
+    head
+        title #{title}
+        link(rel='stylesheet', href='/css/highlightjs-default.css')
+        link(rel='stylesheet', href='/css/style.css')
+        each style in styles
+            link(href=style, rel='stylesheet', type='text/css')
+    body
+        #content-main
+            block content

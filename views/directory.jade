@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 #{baseDir}
+    #directory-listing
+        table.files
+            each file in files
+                tr
+                    td.icon
+                        span(class="octicon octicon-file-#{file.type}")
+                    td 
+                        a(href=file.url) #{file.name}
