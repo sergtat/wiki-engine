@@ -10,6 +10,14 @@ var server = http.createServer(app);
 var marked = require('marked');
 var renderer = new marked.Renderer();
 var highlight = require('highlight.js');
+var urlify = require('urlify').create({
+    addEToUmlauts:true,
+    szToSs:true,
+    spaces:"_",
+    toLower: true,
+    nonPrintable:"_",
+    trim:true
+});
 var _ = require('underscore');
 var fs = require('fs');
 var utilz = require('utilz');
@@ -27,7 +35,8 @@ function cb(err, msg) {
 }
 
 renderer.heading = function (text, level) {
-var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+// var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+var escapedText = urlify(text);
     return '<h' + level + '><a name="' +
       escapedText + '" class="anchor" href="#' +
       escapedText + '"><span class="header-link"></span></a>' +

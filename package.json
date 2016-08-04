@@ -39,6 +39,7 @@
     "request": "*",
     "temporary": "*",
     "underscore": "*",
+    "urlify": "^0.3.6",
     "utilz": "*"
   },
   "devDependencies": {},
