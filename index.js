@@ -34,13 +34,25 @@ function cb(err, msg) {
     console.log(err ? (err.stack || err) : msg || 'done');
 }
 
+var toc = []; // your table of contents as a list.
+
 renderer.heading = function (text, level) {
 var escapedText = urlify(text);
     return '<h' + level + '><a name="' +
       escapedText + '" class="anchor" href="#' +
       escapedText + '"><span class="header-link"></span></a>' +
       text + '</h' + level + '>';
+    toc.push({
+      level: level,
+      escapedText: escapedText,
+      title: text
+    });
 }
+
+// renderer.heading = function(text, level) {
+//   var slug = text.toLowerCase().replace(/[^\w]+/g, '-');
+//   return "<h" + level + " id=\"" + slug + "\"><a href=\"#" + slug + "\" class=\"anchor\"></a>" + text + "</h" + level + ">";
+// };
 
 renderer.listitem = function(text) {
 if (/^\s*\[[x ]\]\s*/.test(text)) {
